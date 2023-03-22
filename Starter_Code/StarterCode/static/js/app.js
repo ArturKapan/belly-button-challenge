@@ -1,26 +1,37 @@
 // Place url in a constant variable
-const url = 'Starter_Code/StarterCode/samples.json';
+const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json"
+
 // Fetch the JSON data and console log it
-d3.json(url).then(function (data) {
-    console.log(data)
+d3.json(url).then(function(data) {
+  console.log(data);
 });
+
 // Initialize the dashboard at start up 
 function init() {
+
     // Use D3 to select the dropdown menu
     let dropdownMenu = d3.select("#selDataset");
 
     // Use D3 to get sample names and populate the drop-down selector
-    d3.json(url).then((data) =>{
+    d3.json(url).then((data) => {
+        
         // Set a variable for the sample names
         let names = data.names;
+
         // Add  samples to dropdown menu
         names.forEach((id) => {
+
             // Log the value of id for each iteration of the loop
             console.log(id);
-            dropdownMenu.append("option").text(id).property("value",id);
+
+            dropdownMenu.append("option")
+            .text(id)
+            .property("value",id);
         });
+
         // Set the first sample from the list
         let sample_one = names[0];
+
         // Log the value of sample_one
         console.log(sample_one);
 
@@ -28,14 +39,17 @@ function init() {
         buildMetadata(sample_one);
         buildBarChart(sample_one);
         buildBubbleChart(sample_one);
-        buildGaugeChart(sample_one);
+        
 
-    });  
+    });
 };
+
 // Function that populates metadata info
 function buildMetadata(sample) {
+
     // Use D3 to retrieve all of the data
-    d3.json(url).then((data) =>{
+    d3.json(url).then((data) => {
+
         // Retrieve all metadata
         let metadata = data.metadata;
 
@@ -50,8 +64,10 @@ function buildMetadata(sample) {
 
         // Clear out metadata
         d3.select("#sample-metadata").html("");
+
         // Use Object.entries to add each key/value pair to the panel
-        Object.entries(valueData).forEach(([key,value]) =>{
+        Object.entries(valueData).forEach(([key,value]) => {
+
             // Log the individual key/value pairs as they are being appended to the metadata panel
             console.log(key,value);
 
@@ -59,7 +75,6 @@ function buildMetadata(sample) {
         });
     });
 
-    
 };
 
 // Function that builds the bar chart
@@ -107,7 +122,7 @@ function buildBarChart(sample) {
         // Call Plotly to plot the bar chart
         Plotly.newPlot("bar", [trace], layout)
     });
-};  
+};
 
 // Function that builds the bubble chart
 function buildBubbleChart(sample) {
@@ -167,7 +182,7 @@ function optionChanged(value) {
     buildMetadata(value);
     buildBarChart(value);
     buildBubbleChart(value);
-    buildGaugeChart(value);
+    
 };
 
 // Call the initialize function
