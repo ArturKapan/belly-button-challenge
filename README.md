@@ -15,3 +15,13 @@ Use otu_ids as the labels for the bar chart.
 Use otu_labels as the hovertext for the chart.
 
 ![image](https://user-images.githubusercontent.com/88156503/226835754-db36f45c-55a4-4c02-98a9-d0336b61d721.png)
+Display the sample metadata, i.e., an individual's demographic information.
+
+Display each key-value pair from the metadata JSON object somewhere on the page.
+
+
+
+Update all the plots when a new sample is selected. Additionally, you are welcome to create any layout that you would like for your dashboard.
+
+Deploy your app to a free static page hosting service, such as GitHub Pages.
+
